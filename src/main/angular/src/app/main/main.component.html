@@ -1,0 +1,32 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a mat-button style="height: 0; position: absolute;"></a>
+        <mat-list-item (click)="sidenav.close()"  routerLink="/main/sender">
+          <button mat-icon-button >
+              <mat-icon>send</mat-icon>
+          </button>
+          <a mdLine>Send</a>
+      </mat-list-item>
+        <mat-list-item (click)="sidenav.close()"  routerLink="/main/reports">
+            <button mat-icon-button >
+                <mat-icon>bar_chart</mat-icon>
+            </button>
+            <a mdLine>Results</a>
+        </mat-list-item>
+      </mat-nav-list>
+  </mat-sidenav>
+  <mat-toolbar color="primary">
+    <button mat-icon-button  matTooltip="Menu" (click)="sidenav.open()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <span fxFlex="100">.....</span>
+    <button matTooltip="Sair" mat-icon-button (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-progress-bar *ngIf="loading" color="warn" mode="indeterminate"></mat-progress-bar>
+  <mat-card id="content">
+      <router-outlet></router-outlet>
+  </mat-card>
+</mat-sidenav-container>

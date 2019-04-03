@@ -1,0 +1,112 @@
+<mat-toolbar color="primary">.....</mat-toolbar>
+<br/>
+<div>
+  <mat-card [class.mat-elevation-z8]="true" fxFlexOffset="5" fxFlex="90">
+    <mat-card-header>
+      <mat-card-title>Quais stacks são utilizadas em sua unidade?</mat-card-title>
+    </mat-card-header>
+    <mat-card-content fxLayout="row">
+      <mat-form-field fxFlex="100">
+          <mat-chip-list #chipListStack aria-label="Stack selection">
+            <mat-chip
+              *ngFor="let stack of stacks"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="remove(stack, stacks)">
+              {{stack}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input
+              placeholder="Técnicas da equipe"
+              [formControl]="stackCtrl"
+              [matChipInputFor]="chipListStack"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="addOnBlur"
+              (matChipInputTokenEnd)="add($event, stacks, stackCtrl)">
+            </mat-chip-list>
+            <mat-hint>Utilziar virgula ou enter para incluir</mat-hint>
+        </mat-form-field>
+    </mat-card-content>
+  </mat-card>
+</div>
+<br/>
+<div>
+  <mat-card [class.mat-elevation-z8]="true" fxFlexOffset="5" fxFlex="90">
+      <mat-card-header>
+        <mat-card-title>Quais técnicas/métodos são utilizados durante o desenvolvimento? </mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="row">
+        <mat-form-field fxFlex="100">
+            <mat-chip-list #chipListDev aria-label="Devs selection">
+              <mat-chip
+                *ngFor="let dev of devs"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(dev, devs)">
+                {{dev}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="Técnicas do desenvolvimento"
+                [formControl]="devCtrl"
+                [matChipInputFor]="chipListDev"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event, devs, devCtrl)">
+              </mat-chip-list>
+              <mat-hint>Utilziar virgula ou enter para incluir</mat-hint>
+          </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+</div>
+<br/>
+<div>
+  <mat-card [class.mat-elevation-z8]="true" fxFlexOffset="5" fxFlex="90">
+      <mat-card-header>
+        <mat-card-title>Quais ténicas/metodos são utilizados durante o teste?</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="row">
+        <mat-form-field fxFlex="100">
+            <mat-chip-list #chipListTest aria-label="Test selection">
+              <mat-chip
+                *ngFor="let test of tests"
+                [selectable]="selectable"
+                [removable]="removable"
+                (removed)="remove(test, tests)">
+                {{test}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input
+                placeholder="Técnicas do teste"
+                [formControl]="testCtrl"
+                [matChipInputFor]="chipListTest"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event, tests, testCtrl)">
+              </mat-chip-list>
+              <mat-hint>Utilziar virgula ou enter para incluir</mat-hint>
+          </mat-form-field>
+      </mat-card-content>
+    </mat-card>
+</div>
+<br/>
+<div>
+  <mat-card [class.mat-elevation-z8]="true" fxFlexOffset="5" fxFlex="90">
+      <mat-card-header>
+        <mat-card-title>Qual a incidência de erros descobertos pelo cliente no ultimo ano?</mat-card-title>
+      </mat-card-header>
+      <mat-card-content fxLayout="row">
+          <mat-slider fxFlex="100"
+          max="200"
+          min="0"
+          thumbLabel="true"
+          color="primary"
+          [(ngModel)]="errorsClient"> </mat-slider>
+      </mat-card-content>
+    </mat-card>
+</div>
+<br/>
+<div>
+  <button  fxFlexOffset="5" fxFlex="90" mat-raised-button [disabled]="!isValid()" (click)="enviarResposta()" type="button" color="primary">Salvar resposta</button>
+</div>
+<br/>

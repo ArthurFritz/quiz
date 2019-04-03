@@ -1,0 +1,44 @@
+<div class="mat-elevation-z8">
+  <mat-toolbar>
+    <span>Sender</span>
+  </mat-toolbar>
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="code">
+        <mat-header-cell *matHeaderCellDef> Key </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> E-mail </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="send">
+      <mat-header-cell *matHeaderCellDef> Send </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.send}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef  fxFlex="90px"> Actions </mat-header-cell>
+      <mat-cell *matCellDef="let element" fxFlex="90px" class="buttons">
+          <button mat-icon-button color="primary" (click)="reOpen(element.id)" matTooltip="Reopen">
+            <mat-icon class="mat-24" aria-label="Edit">edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="close(element.id)" matTooltip="Close">
+              <mat-icon class="mat-24" aria-label="close">close</mat-icon>
+          </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <div *ngIf="noResults$" class="noResult">No results</div>
+  <button mat-fab color="primary" routerLink="/main/sender/add">
+    <mat-icon class="mat-24" aria-label="Add" matTooltip="New">add</mat-icon>
+  </button> 
+</div>

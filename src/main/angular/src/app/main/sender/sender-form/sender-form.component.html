@@ -1,0 +1,26 @@
+<mat-toolbar>
+  <span>Sender</span>
+</mat-toolbar>
+<br>
+<form [formGroup]="form" fxLayout="column">
+    <mat-form-field fxFlex="100"> 
+      <input matInput formControlName="name" placeholder="Name">
+      <mat-error *ngIf="form.controls['name'].hasError('required')">
+          Campo obrigatório
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="100"> 
+      <input matInput formControlName="email" placeholder="E-mail">
+      <mat-error *ngIf="form.controls['email'].hasError('required')">
+          Campo obrigatório
+      </mat-error>
+      <mat-error *ngIf="form.controls['email'].hasError('email')">
+          E-mail inválido
+      </mat-error>
+    </mat-form-field>
+    <br>
+    <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between">
+        <button type="button" mat-raised-button color="primary" [disabled]="!form.valid" (click)="save()">Save</button>
+        <button type="button" mat-raised-button color="warn" routerLink="/main/sender">Cancel</button>
+    </div>
+  </form>
