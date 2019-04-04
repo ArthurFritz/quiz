@@ -3,10 +3,6 @@
     <span>Sender</span>
   </mat-toolbar>
   <mat-table #table [dataSource]="dataSource">
-    <ng-container matColumnDef="code">
-        <mat-header-cell *matHeaderCellDef> Key </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-    </ng-container>
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
@@ -17,7 +13,7 @@
     </ng-container>
     <ng-container matColumnDef="send">
       <mat-header-cell *matHeaderCellDef> Send </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.send}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.send | date:'dd/MM/yyyy HH:mm:ss'}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
@@ -26,11 +22,14 @@
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef  fxFlex="90px"> Actions </mat-header-cell>
       <mat-cell *matCellDef="let element" fxFlex="90px" class="buttons">
-          <button mat-icon-button color="primary" (click)="reOpen(element.id)" matTooltip="Reopen">
+          <button *ngIf="element.status != 'WAIT'" mat-icon-button color="primary" (click)="reOpen(element.id)" matTooltip="Reopen">
             <mat-icon class="mat-24" aria-label="Edit">edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn" (click)="close(element.id)" matTooltip="Close">
+          <button *ngIf="element.status == 'WAIT'" mat-icon-button color="warn" (click)="close(element.id)" matTooltip="Close">
               <mat-icon class="mat-24" aria-label="close">close</mat-icon>
+          </button>
+          <button mat-icon-button (click)="openForm(element.id)" matTooltip="Visualizar">
+              <mat-icon class="mat-24" aria-label="visibility">visibility</mat-icon>
           </button>
       </mat-cell>
     </ng-container>

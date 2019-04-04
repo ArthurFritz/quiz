@@ -22,9 +22,6 @@ import java.util.Map;
 public class AuthenticateController {
 
     @Autowired
-    AuthenticationManager authenticationManager;
-
-    @Autowired
     JwtTokenProvider jwtTokenProvider;
 
     @Value("${login:admin}")

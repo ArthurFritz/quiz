@@ -8,6 +8,8 @@ import com.arthurfritz.questionario.repository.ReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class ResponseService {
 
@@ -20,6 +22,8 @@ public class ResponseService {
         report.setErrors(responseDTO.getErros());
         report.setStacks(responseDTO.getStacks());
         report.setTests(responseDTO.getTests());
+        report.setStatus(Status.FINISH);
+        report.setUpdateAt(LocalDateTime.now());
         reportRepository.save(report);
         return responseDTO;
     }
@@ -35,6 +39,7 @@ public class ResponseService {
                 .erros(report.getErrors())
                 .stacks(report.getStacks())
                 .tests(report.getTests())
+                .status(report.getStatus())
                 .build();
     }
 }

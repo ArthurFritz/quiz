@@ -9,6 +9,7 @@ import { MatTableModule, MatIconModule, MatButtonModule, MatFormFieldModule, Mat
 import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ServicesModule } from '../services/services.module';
+import { SenderService } from './sender.service';
 
 @NgModule({
   declarations: [SenderFormComponent, SenderListComponent],
@@ -33,7 +34,8 @@ import { ServicesModule } from '../services/services.module';
   ],
   providers: [
     FormBuilder,
-    HttpClient
+    HttpClient,
+    SenderService
   ]
 })
 export class SenderModule { }

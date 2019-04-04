@@ -1,5 +1,6 @@
 package com.arthurfritz.questionario.service;
 
+import com.arthurfritz.questionario.dto.ItemResponseDTO;
 import com.arthurfritz.questionario.dto.NewSenderDTO;
 import com.arthurfritz.questionario.dto.ResponseSenderDTO;
 import com.arthurfritz.questionario.entity.Report;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SenderService {
@@ -34,7 +36,15 @@ public class SenderService {
         });
     }
 
-    public List<Report> getAllReports() {
-        return reportRepository.findAll();
+    public List<ItemResponseDTO> getAllReports() {
+        return reportRepository.findAll().stream().map(
+                (item) -> ItemResponseDTO.builder()
+                        .email(item.getEmail())
+                        .id(item.getId())
+                        .name(item.getName())
+                        .send(item.getCreateAt())
+                        .status(item.getStatus())
+                        .build())
+                .collect(Collectors.toList());
     }
 }

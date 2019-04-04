@@ -1,5 +1,6 @@
 package com.arthurfritz.questionario.dto;
 
+import com.arthurfritz.questionario.entity.Status;
 import lombok.Builder;
 import lombok.Data;
 
@@ -25,5 +26,7 @@ public class ResponseDTO {
 
     @NotNull
     private Long erros;
+
+    private Status status;
 
 }

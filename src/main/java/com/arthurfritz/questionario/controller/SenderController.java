@@ -1,8 +1,8 @@
 package com.arthurfritz.questionario.controller;
 
+import com.arthurfritz.questionario.dto.ItemResponseDTO;
 import com.arthurfritz.questionario.dto.NewSenderDTO;
 import com.arthurfritz.questionario.dto.ResponseSenderDTO;
-import com.arthurfritz.questionario.entity.Report;
 import com.arthurfritz.questionario.entity.Status;
 import com.arthurfritz.questionario.service.SenderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class SenderController {
     }
 
     @GetMapping
-    public List<Report> getAll() {
+    public List<ItemResponseDTO> getAll() {
         return senderService.getAllReports();
     }
 
